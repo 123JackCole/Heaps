@@ -1,0 +1,4 @@
+function MaxHeap() {
+    this.heap = [];
+}
+
