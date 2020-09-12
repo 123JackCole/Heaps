@@ -17,7 +17,7 @@ Heap.prototype = {
             let last = this.content.pop();
 
             if (this.content.length) {
-                this.content.unshift(last);
+                this.content[0] = last;
                 this.moveDown(0);
             }
 
@@ -49,12 +49,12 @@ Heap.prototype = {
     
         while (index > 0) {
     
-            let parentIndex = Math.floor((index + 1) / 2) - 1, // Math.floor((index + 1) / 2)
+            let parentIndex = Math.ceil((index - 1) / 2),
                 parent = this.content[parentIndex];
     
-            if (parent >= element) break;
-    
-            this.swap(parentIndex, index);
+            if (parent <= element) break;
+
+            this.swap(index, parentIndex);
             index = parentIndex;
     
         }
@@ -68,8 +68,8 @@ Heap.prototype = {
     
         while (index < 0) {
     
-            let child1Index = (index + 1) * 2 // (index * 2) + 1
-                child2Index = child1Index - 1; // (index * 2) + 2
+            let child1Index = (index + 1) * 1;
+                child2Index = child1Index - 1;
                 swapped = false;
     
             if (child1Index < length) {
@@ -109,9 +109,9 @@ h.insert(60);
 h.insert(39);
 h.insert(97);
 
-console.log(h.content)
+console.log(h.content);
 
-h.remove()
-// h.remove(60)
+h.remove();
+h.remove(60);
 
-console.log(h.content)
+console.log(h.content);
