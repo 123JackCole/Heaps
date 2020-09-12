@@ -4,7 +4,41 @@ function Heap() {
 
 Heap.prototype = {
 
-    push
+    insert: function(data) {
+
+        this.content.push(data);
+        moveUp(this.content.length - 1);
+
+    },
+
+    remove: function(data = null) {
+
+        if (!data) {
+            let last = this.content.pop();
+
+            if (this.content.length) {
+                this.content.unshift(last);
+                this.moveDown(0);
+            }
+
+            return true;
+        }
+        
+        let length = this.content.length;
+
+        for (let i = 0; i < length; i++) {
+
+            if (this.content[i] !== data) continue;
+
+            let last = this.content.pop();
+            if (i === length - 1) return true;
+
+            this.content[i] = last;
+            moveUp(i);
+            moveDown(i);
+
+        }
+    }
 
 }
 
@@ -66,3 +100,6 @@ const moveDown = (index) => {
     }
 
 }
+
+let h = new Heap;
+h.insert()
