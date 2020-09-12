@@ -7,7 +7,7 @@ Heap.prototype = {
     insert: function(data) {
 
         this.content.push(data);
-        moveUp(this.content.length - 1);
+        this.moveUp(this.content.length - 1);
 
     },
 
@@ -34,72 +34,84 @@ Heap.prototype = {
             if (i === length - 1) return true;
 
             this.content[i] = last;
-            moveUp(i);
-            moveDown(i);
-
+            this.moveUp(i);
+            this.moveDown(i);
         }
-    }
+    },
 
-}
+    swap: function(a, b) {
+        [this.content[a], this.content[b]] = [this.content[b], this.content[a]];
+    },
 
-const swap = (a, b) => {
-    [this.content[a], this.content[b]] = [this.content[b], this.content[a]];
-}
+    moveUp: function(index) {
 
-const moveUp = (index) => {
+        let element = this.content[index];
+    
+        while (index > 0) {
+    
+            let parentIndex = Math.floor((index + 1) / 2) - 1, // Math.floor((index + 1) / 2)
+                parent = this.content[parentIndex];
+    
+            if (parent >= element) break;
+    
+            this.swap(parentIndex, index);
+            index = parentIndex;
+    
+        }
+    
+    },
 
-    let element = this.content[index];
-
-    while (index > 0) {
-
-        let parentIndex = Math.floor((index + 1) / 2) - 1, // Math.floor((index + 1) / 2)
-            parent = this.content[parentIndex];
-
-        if (parent >= element) return true;
-
-        swap(parentIndex, index);
-        index = parentIndex;
-
-    }
-
-}
-
-const moveDown = (index) => {
+    moveDown: function(index) {
    
-    let length = this.content.length,
-        element = this.content[index];
-
-    while (index < 0) {
-
-        let child1Index = (index + 1) * 2 // (index * 2) + 1
-            child2Index = child1Index - 1; // (index * 2) + 2
-            swapped = false;
-
-        if (child1Index < length) {
-
-            let child1 = this.content[child1Index];
-            if (child1 < element) swap(child1Index, index);
-            swapped = child1;
-
-        }
-
-        if (child2Index < length) {
-            
-            let child2 = this.content[child2Index];
-            if (child2 < (swapped ? child1 : element)) {
-                swap(child2Index, index);
-                swapped = child2;
+        let length = this.content.length,
+            element = this.content[index];
+    
+        while (index < 0) {
+    
+            let child1Index = (index + 1) * 2 // (index * 2) + 1
+                child2Index = child1Index - 1; // (index * 2) + 2
+                swapped = false;
+    
+            if (child1Index < length) {
+    
+                let child1 = this.content[child1Index];
+                if (child1 < element) this.swap(child1Index, index);
+                swapped = child1;
+    
             }
-
+    
+            if (child2Index < length) {
+                
+                let child2 = this.content[child2Index];
+                if (child2 < (swapped ? child1 : element)) {
+                    swap(child2Index, index);
+                    swapped = child2;
+                }
+    
+            }
+    
+            if (!swapped) break;
+    
+            this.swap(index, swapped);
+    
         }
-
-        if (!swapped) return true;
-
-        swap(index, swapped);
-
+    
     }
 
 }
 
 let h = new Heap;
-h.insert()
+
+h.insert(44);
+h.insert(12);
+h.insert(7);
+h.insert(60);
+h.insert(39);
+h.insert(97);
+
+console.log(h.content)
+
+h.remove()
+// h.remove(60)
+
+console.log(h.content)
