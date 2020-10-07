@@ -115,3 +115,5 @@ h.remove();
 h.remove(60);
 
 console.log(h.content);
+
+// add heap sort here
