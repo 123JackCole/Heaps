@@ -1,31 +1,39 @@
-heapify: function(arr, i) {
+const swap = (arr, a, b) => {
+    [arr[a], arr[b]] = [arr[b], arr[a]];
+}
+
+const heapify = (arr, length, i) => {
 
     const left = i * 2 + 1;
     const right = i * 2 + 2;
     let max = i;
 
-    if (left < arrLength && arr[left] > arr[max]) max = left;
-    if (right < arrLength && arr[right] > arr[max]) max = right;
+    if (left < length && arr[left] > arr[max]) max = left;
+    if (right < length && arr[right] > arr[max]) max = right;
 
     if (max !== i) {
-        this.swap(i, max);
-        this.heapify(arr, max);
+        swap(arr, i, max);
+        heapify(arr, length, max);
     }
 
-},
+}
 
-heapSort = (arr) => {
+const heapSort = (arr) => {
     length = arr.length;
 
-    for (let i = length / 2 - 1; i >= 0; i--) {
-        this.heapify(arr);
+    for (let i = Math.floor(length / 2 - 1); i >= 0; i--) {
+        heapify(arr, length, i);
     }
 
     for (let i = length - 1; i > 0; i--) {
-        this.swap(0, i);
-        arr.pop();
-        this.heapify(arr, 0);
+        swap(arr, 0, i);
+        heapify(arr, i, 0);
     }
 
     return arr;
 }
+
+const array = [5, 88, 47, 17, 48, 9, 1, 8, 99, 33, 26];
+
+console.log(array);
+console.log(heapSort(array));
