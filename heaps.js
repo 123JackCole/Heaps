@@ -96,32 +96,6 @@ Heap.prototype = {
     
         }
     
-    },
-
-    heapify: function(arr, index) {
-
-        const left = index * 2 + 1;
-        const left = index * 2 + 2;
-        let max = index;
-    
-        if (left < arrLength && arr[left] > arr[max]) max = left;
-        if (right < arrLength && arr[right] > arr[max]) max = right;
-    
-        if (max !== index) {
-            this.swap(i, max);
-            this.swap();
-        }
-    
-    },
-
-    heapSort: function(arr) {
-        length = arr.length;
-    
-        for (let i = length / 2 - 1; i >= 0; i--) {
-    
-    
-    
-        }
     }
 
 }
