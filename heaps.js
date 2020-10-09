@@ -96,6 +96,31 @@ Heap.prototype = {
     
         }
     
+    },
+
+    heapify: function(arr, index) {
+
+        const left = index * 2 + 1;
+        const left = index * 2 + 2;
+        let max = index;
+    
+        if (left < arrLength && arr[left] > arr[max]) max = left;
+        if (right < arrLength && arr[right] > arr[max]) max = right;
+    
+        if (max !== index) {
+            swap[]
+        }
+    
+    },
+
+    heapSort: function(arr) {
+        length = arr.length;
+    
+        for (let i = length / 2 - 1; i >= 0; i--) {
+    
+    
+    
+        }
     }
 
 }
@@ -115,7 +140,4 @@ h.remove();
 h.remove(60);
 
 console.log(h.content);
-
-
-// add heap sort here
 
