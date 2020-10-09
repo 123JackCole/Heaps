@@ -84,7 +84,7 @@ Heap.prototype = {
                 
                 let child2 = this.content[child2Index];
                 if (child2 < (swapped ? child1 : element)) {
-                    swap(child2Index, index);
+                    this.swap(child2Index, index);
                     swapped = child2;
                 }
     
@@ -108,7 +108,8 @@ Heap.prototype = {
         if (right < arrLength && arr[right] > arr[max]) max = right;
     
         if (max !== index) {
-            swap[]
+            this.swap(i, max);
+            this.swap();
         }
     
     },
